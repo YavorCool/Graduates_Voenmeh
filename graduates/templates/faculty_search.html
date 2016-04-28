@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<script src="{% static "static/js/ajax.js" %}"></script>
+
+<select class="target" id="filter_speciality">
+    {% for spec in specs %}
+        {%  if spec.speciality_name == last_selected %}
+            <option value="{{ spec.speciality_name }}" {{ selected }}>{{ spec.speciality_name }}</option>
+        {% else %}
+            <option value="{{ spec.speciality_name }}">{{ spec.speciality_name }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+<div class="col-md-9">
+<table class="table table-bordered">
+    <tr class="success">
+        <td>Фамилия</td>
+        <td>Имя</td>
+        <td>Отчество</td>
+        <td>Специальность</td>
+        <td>Год окончания</td>
+        <td>Ступень</td>
+    </tr>
+    {% for graduate in graduates %}
+        <tr class="tr-grad" onclick="return location.href = '/get_description/{{ graduate.id }}'">
+            <td>{{ graduate.graduate_surname }}</td>
+            <td>{{ graduate.graduate_name }} </td>
+            <td>{{ graduate.graduate_patronymic }}</td>
+            <td>{{ graduate.graduate_speciality }}</td>
+            <td>{{ graduate.graduate_gradyear  }}</td>
+            <td>{{ graduate.graduate_degree  }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+
+<!--<div class="row">
+    <div class="col-md-2 col-md-offset-5">
+        <ul class = "pagination">
+            {% if graduates.has_previous%}
+                <li onclick="paginate({{ graduates.previous_page_number }})"><a href = "#">&laquo;</a></li>
+            {% else %}
+                <li class = "disabled"><a href = "#">&laquo;</a></li>
+            {% endif %}
+            {% for page in graduates.paginator.page_range %}
+                {% if page == graduates.number %}
+                    <li class="active" onclick="paginate({{ page }})"><a href="#">{{ page }}</a></li>
+                {% else %}
+                    <li onclick="paginate({{ page }})"><a href="">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if graduates.has_next %}
+                <li onclick="paginate({{ graduates.next_page_number }})"><a href="#">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>-->

@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block graduates %}
+        <div class="row"><!-- Основной блок -->
+            <div class="col-md-2"><!-- Блок слева, поиск по фамилии -->
+                <h5>Поиск по фамилии</h5>
+                <input type="text" id="search" name="search"/>
+                <table id="search_results" class="table"><!-- Таблица для втсавки из ajax_search.html -->
+                </table>
+            </div><!-- Блок слева, поиск по фамилии конец -->
+                <select class="target" id="filter_faculty"><!--Выбор факультета  -->
+                    <option value="А" selected="А">А</option>
+                    <option value="И">И</option>
+                </select><!-- выбор факультета -->
+            <div id="search_faculty_results"><!-- Сюда возвращаются значения из ajax, подставляется graduates.html -->
+                <div class="col-md-9"><!-- Блок с таблицей -->
+                    <table class="table table-bordered"><!-- Таблица выпускников -->
+                        <tr class="success">
+                            <td>Фамилия</td>
+                            <td>Имя</td>
+                            <td>Отчество</td>
+                            <td>Специальность</td>
+                            <td>Год окончания</td>
+                            <td>Ступень</td>
+                        </tr>
+                        {% for graduate in graduates %}
+                            <tr class="tr-grad" onclick="return location.href = '/get_description/{{ graduate.id }}'">
+                                <td>{{ graduate.graduate_surname }}</td>
+                                <td>{{ graduate.graduate_name }} </td>
+                                <td>{{ graduate.graduate_patronymic }}</td>
+                                <td>{{ graduate.graduate_speciality }}</td>
+                                <td>{{ graduate.graduate_gradyear  }}</td>
+                                <td>{{ graduate.graduate_degree  }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table><!-- таблица выпускников -->
+                </div><!-- блок с таблицей -->
+
+                <!--<div class="row">
+                    <div class="col-md-2 col-md-offset-5">
+                        <ul class = "pagination">
+                            {% if graduates.has_previous%}
+                                <li><a href = "#">&laquo;</a></li>
+                            {% else %}
+                                <li class = "disabled"><a href = "#">&laquo;</a></li>
+                            {% endif %}
+                            {% for page in graduates.paginator.page_range %}
+                                {% if page == graduates.number %}
+                                    <li class="active"><a href="#">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="#">{{ page }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if graduates.has_next %}
+                                <li><a href="#">&raquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><a href="#">&raquo;</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>-->
+            </div><!-- сюда возвращаются значения из ajax -->
+        </div><!-- Конец основного блока -->
+
+
+
+{% endblock %}

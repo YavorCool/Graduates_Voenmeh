@@ -1,0 +1,37 @@
+.tile-elem{
+    transition: 0.5s;
+    border-radius: 8px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    margin-right: 1%;
+    margin-top: 1%;
+    padding-bottom: 1%;
+}
+.tile-elem:hover{
+    background: #dddddd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.0);
+}
+
+.tile-layer-name{
+    position: relative;
+}
+
+.tile-layer-img{
+    position: relative;
+
+}
+
+.tile-layer-description{
+    margin-bottom: auto;
+    margin-left: auto;
+}
+
+.tr-grad:hover{
+    background: #dddddd;
+}
+
+.tr-grad{
+   transition: 0.2s;
+    cursor: pointer;
+}
+
+

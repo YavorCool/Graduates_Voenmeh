@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Title</title>
+
+        <link rel="stylesheet" type="text/css" href = "{% static "static/css/bootstrap.css" %}">
+        <link rel="stylesheet" type="text/css" href = "{% static "static/css/style.css" %}">
+        <script src="{% static "static/js/bootstrap.min.js"%}"></script>
+        <script src="{% static "static/js/jquery-2.2.3.min.js" %}"></script>
+        <script src="{% static "static/js/ajax.js" %}"></script>
+
+    </head>
+    <body>
+        {% block graduates %}
+        {% endblock %}
+    </body>
+</html>

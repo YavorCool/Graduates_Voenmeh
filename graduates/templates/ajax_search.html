@@ -1,0 +1,12 @@
+
+{% block ajax_search %}
+        {% if graduates.count > 0 %}
+            {% for graduate in graduates %}
+             <tr class="tr-grad" onclick="return location.href = '/get_description/{{ graduate.id }}'">
+                 <td>{{ graduate.graduate_surname }}</td>
+                 <td>{{ graduate.graduate_name }}</td></tr>
+            {% endfor %}
+        {% else %}
+            <tr><td/></tr>
+        {% endif %}
+{% endblock %}
