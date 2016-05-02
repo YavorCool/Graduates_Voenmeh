@@ -32,26 +32,36 @@ def search_surname(request):
 @csrf_exempt
 def search_faculty(request):
     search_val = request.POST['faculty_code']
+    show_count_param = request.POST['show_count']
     graduates = Graduate.objects.filter(graduate_speciality__speciality_kaf__kaf_faculty__faculty_code=search_val)
     specialities = Speciality.objects.filter(speciality_kaf__kaf_faculty__faculty_code=search_val)
-    return render_to_response('faculty_search.html', {'graduates': graduates,
+    show_count = int(show_count_param)
+
+    return render_to_response('faculty_search.html', {'graduates': graduates[:show_count],
                                                       'specs': specialities,
     })
 
 @csrf_exempt
 def search_speciality(request):
     fac_val = request.POST['fac_name']
-    page_number = 1
+    show_count_param  = request.POST['show_count']
+    show_count = int(show_count_param)
     search_val = request.POST['speciality_name']
-
+    print(show_count)
     graduates = Graduate.objects.filter(graduate_speciality__speciality_name=search_val)
     specialities = Speciality.objects.filter(speciality_kaf__kaf_faculty__faculty_code=fac_val)
 
-    return render_to_response('faculty_search.html', {'graduates': graduates,
+    return render_to_response('faculty_search.html', {'graduates': graduates[:show_count],
                                                         'specs': specialities,
                                                         'selected': 'selected="selected"',
                                                         'last_selected': search_val,
                                                         })
 
 
+def get_graduate_description(request, id):
+    print(id)
+    graduate = Graduate.objects.get(id=id)
+
+    return render_to_response('graduate.html', {'graduate': graduate,
+                                                })
 

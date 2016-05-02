@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block graduate %}
+    <table class="table">
+        <tr class="tr-grad">
+            <td>Фамилия</td>
+            <td>{{ graduate.graduate_surname }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Имя</td>
+            <td>{{ graduate.graduate_name }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Отчество</td>
+            <td>{{ graduate.graduate_patronymic }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Дата рождения</td>
+            <td>{{ graduate.graduate_birthdate }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Адрес</td>
+            <td>{{ graduate.graduate_address }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Место работы</td>
+            <td>{{ graduate.graduate_workplace }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Тема диплома</td>
+            <td>{{ graduate.graduate_diploma_theme }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Специальность</td>
+            <td>{{ graduate.graduate_speciality }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Год выпуска</td>
+            <td>{{ graduate.graduate_gradyear }}</td>
+        </tr>
+
+        <tr class="tr-grad">
+            <td>Ступень</td>
+            <td>{{ graduate.graduate_degree }}</td>
+        </tr>
+
+
+    </table>
+{% endblock %}

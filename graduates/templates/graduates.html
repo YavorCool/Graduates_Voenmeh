@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% load staticfiles %}
-{% block graduates %}
+{% block graduate %}
         <div class="row"><!-- Основной блок -->
             <div class="col-md-2"><!-- Блок слева, поиск по фамилии -->
                 <h5>Поиск по фамилии</h5>
@@ -24,7 +24,7 @@
                             <td>Ступень</td>
                         </tr>
                         {% for graduate in graduates %}
-                            <tr class="tr-grad" onclick="return location.href = '/get_description/{{ graduate.id }}'">
+                            <tr class="tr-grad" onclick='return location.href ="get_graduate_description/{{ graduate.id }}"'>
                                 <td>{{ graduate.graduate_surname }}</td>
                                 <td>{{ graduate.graduate_name }} </td>
                                 <td>{{ graduate.graduate_patronymic }}</td>
@@ -34,34 +34,10 @@
                             </tr>
                         {% endfor %}
                     </table><!-- таблица выпускников -->
+                    <div id="expand">Еще</div>
                 </div><!-- блок с таблицей -->
-
-                <!--<div class="row">
-                    <div class="col-md-2 col-md-offset-5">
-                        <ul class = "pagination">
-                            {% if graduates.has_previous%}
-                                <li><a href = "#">&laquo;</a></li>
-                            {% else %}
-                                <li class = "disabled"><a href = "#">&laquo;</a></li>
-                            {% endif %}
-                            {% for page in graduates.paginator.page_range %}
-                                {% if page == graduates.number %}
-                                    <li class="active"><a href="#">{{ page }}</a></li>
-                                {% else %}
-                                    <li><a href="#">{{ page }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if graduates.has_next %}
-                                <li><a href="#">&raquo;</a></li>
-                            {% else %}
-                                <li class="disabled"><a href="#">&raquo;</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>-->
-            </div><!-- сюда возвращаются значения из ajax -->
-        </div><!-- Конец основного блока -->
-
+            </div>
+        </div>
 
 
 {% endblock %}

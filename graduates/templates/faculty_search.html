@@ -1,5 +1,6 @@
 {% load staticfiles %}
-<script src="{% static "static/js/ajax.js" %}"></script>
+<script src="{% static "static/js/speciality_search.js" %}"></script>
+<script src="{% static "static/js/expand.js" %}"></script>
 
 <select class="target" id="filter_speciality">
     {% for spec in specs %}
@@ -32,28 +33,5 @@
         </tr>
     {% endfor %}
 </table>
+<div id="expand" onclick="expand()">Еще</div>
 </div>
-
-<!--<div class="row">
-    <div class="col-md-2 col-md-offset-5">
-        <ul class = "pagination">
-            {% if graduates.has_previous%}
-                <li onclick="paginate({{ graduates.previous_page_number }})"><a href = "#">&laquo;</a></li>
-            {% else %}
-                <li class = "disabled"><a href = "#">&laquo;</a></li>
-            {% endif %}
-            {% for page in graduates.paginator.page_range %}
-                {% if page == graduates.number %}
-                    <li class="active" onclick="paginate({{ page }})"><a href="#">{{ page }}</a></li>
-                {% else %}
-                    <li onclick="paginate({{ page }})"><a href="">{{ page }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if graduates.has_next %}
-                <li onclick="paginate({{ graduates.next_page_number }})"><a href="#">&raquo;</a></li>
-            {% else %}
-                <li class="disabled"><a href="#">&raquo;</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</div>-->

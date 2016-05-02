@@ -7,6 +7,10 @@ class Faculty(models.Model):
     faculty_code = models.CharField(max_length=100, )
     faculty_description = models.TextField()
 
+    class Meta:
+        verbose_name = 'Faculty'
+        verbose_name_plural = 'Faculties'
+
     def __str__(self):
         return u'%s' % self.faculty_name
 
