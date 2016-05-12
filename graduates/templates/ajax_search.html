@@ -1,12 +1,14 @@
-
+<!--Блок для поиска по фамилии, выводит все таблицей AJAX запрос в faculty_search.js-->
 {% block ajax_search %}
         {% if graduates.count > 0 %}
             {% for graduate in graduates %}
-             <tr class="tr-grad" onclick="return location.href = '/get_description/{{ graduate.id }}'">
+             <tr class="tr-grad" onclick='return location.href ="get_graduate_description/{{ graduate.id }}"'>
                  <td>{{ graduate.graduate_surname }}</td>
                  <td>{{ graduate.graduate_name }}</td></tr>
             {% endfor %}
+            <tr><td colspan="2" bgcolor="#cccccc">Показано {{ graduates.count }} фамилий из {{ summary_count }}</td></tr>
         {% else %}
             <tr><td/></tr>
         {% endif %}
+
 {% endblock %}

@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href = "{% static "static/css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href = "{% static "static/css/style.css" %}">
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Выпускники военмеха</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Поиск выпусника</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Факультеты
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/get_faculty_description/1">Ракетно-Космической техники (А)</a></li>
+                        <li><a href="/get_faculty_description/2">Оружие и системы вооружения(Е)</a></li>
+                        <li><a href="/get_faculty_description/3">Информационные и управляющие системы (И)</a></li>
+                        <li><a href="/get_faculty_description/4">Естественнонаучный (О)</a></li>
+                        <li><a href="/get_faculty_description/5">Международного промышленного менджмента и коммуникации (Р)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class = "row">
+        <h2 align="center">{{ faculty.faculty_name }}</h2>
+    </div>
+    <div class = "row">
+        <div class="col-md-8 col-md-offset-2">
+            <blockquote>{{ faculty.faculty_description }}</blockquote>
+        </div>
+    </div>
+    <div class = "row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>Кафедры:</h3>
+            <table class="table-responsive">
+                {% for kaf in kafs %}
+                    <tr class="tr-grad" onclick='return location.href ="get_kaf_description/{{ kaf.id }}"'>
+                        <td>{{ kaf.kaf_name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+
+</body>
+</html>

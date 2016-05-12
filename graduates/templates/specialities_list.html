@@ -1,0 +1,8 @@
+<option value = "none" selected = "none"></option>
+{% for spec in specs %}
+    {% if spec == selected_spec %}
+        <option  selected value="{{ spec.speciality_name }}">{{ spec.speciality_name }}</option>
+    {% else %}
+        <option  value="{{ spec.speciality_name }}">{{ spec.speciality_name }}</option>
+    {% endif %}
+{% endfor %}

@@ -8,13 +8,46 @@
 
         <link rel="stylesheet" type="text/css" href = "{% static "static/css/bootstrap.css" %}">
         <link rel="stylesheet" type="text/css" href = "{% static "static/css/style.css" %}">
-        <script src="{% static "static/js/bootstrap.min.js"%}"></script>
-        <script src="{% static "static/js/jquery-2.2.3.min.js" %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="{% static "static/js/faculty_search.js" %}"></script>
         <script src="{% static "static/js/expand.js" %}"></script>
+        <script src="{% static "static/js/group_search.js" %}"></script>
+        <script src="{% static "static/js/speciality_search.js" %}"></script>
 
     </head>
     <body>
+    <!-- Навигационная панель сверху-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Название сайта-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Выпускники военмеха</a>
+            </div>
+            <!-- название сайта-->
+
+            <!-- Кнопки на панели-->
+            <ul class="nav navbar-nav">
+                <!-- Ссылка на поиск выпускника-->
+                <li class="active"><a href="/">Поиск выпусника</a></li>
+                <!-- Выпадающее меню с факультетами-->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Факультеты
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="get_faculty_description/1">Ракетно-Космической техники (А)</a></li>
+                        <li><a href="get_faculty_description/2">Оружие и системы вооружения(Е)</a></li>
+                        <li><a href="get_faculty_description/3">Информационные и управляющие системы (И)</a></li>
+                        <li><a href="get_faculty_description/4">Естественнонаучный (О)</a></li>
+                        <li><a href="get_faculty_description/5">Международного промышленного менджмента и коммуникации (Р)</a></li>
+                    </ul>
+                </li>
+                <!-- выпадающее меню с факультетами-->
+            </ul>
+            <!-- кнопки на панели-->
+        </div>
+    </nav>
+    <!-- навигационная панель сверху-->
         {% block graduate %}
         {% endblock%}
     </body>

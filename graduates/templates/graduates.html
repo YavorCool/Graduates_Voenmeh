@@ -1,20 +1,59 @@
 {% extends 'main.html' %}
 {% load staticfiles %}
 {% block graduate %}
-        <div class="row"><!-- Основной блок -->
-            <div class="col-md-2"><!-- Блок слева, поиск по фамилии -->
+        <!-- Основной блок -->
+        <div class="row">
+            <!-- Блок слева, поиск по фамилии -->
+            <div class="col-md-2">
                 <h5>Поиск по фамилии</h5>
                 <input type="text" id="search" name="search"/>
-                <table id="search_results" class="table"><!-- Таблица для втсавки из ajax_search.html -->
+                <!-- Таблица для втсавки из ajax_search.html -->
+                <table id="search_results" class="table">
                 </table>
-            </div><!-- Блок слева, поиск по фамилии конец -->
-                <select class="target" id="filter_faculty"><!--Выбор факультета  -->
-                    <option value="А" selected="А">А</option>
-                    <option value="И">И</option>
-                </select><!-- выбор факультета -->
-            <div id="search_faculty_results"><!-- Сюда возвращаются значения из ajax, подставляется graduates.html -->
-                <div class="col-md-9"><!-- Блок с таблицей -->
-                    <table class="table table-bordered"><!-- Таблица выпускников -->
+                <!--таблица из ajax_search-->
+            </div>
+            <!-- блок слева, поиск по фамилии конец -->
+
+            <!--Выбор факультета AJAX запрос в faculty_search.js  -->
+            Факультет:
+            <select class="target" id="filter_faculty">
+                <option value="none" selected="none"></option>
+                {% for faculty in faculties %}
+                    <option value="{{ faculty.faculty_code }}">{{ faculty.faculty_code }}</option>
+                {% endfor %}
+            </select>
+            <!-- выбор факультета -->
+
+            <!--Select с выбором группы AJAX запрос в group_search.js-->
+            Группа:
+            <select class="target" id="filter_group">
+                <option value = "none" selected = "none"></option>
+                {% for group in groups %}
+                        <option value="{{ group.group_number }}">{{ group.group_number }}</option>
+                {% endfor %}
+            </select>
+            <!--select с выбором группы AJAX запрос в group_search.js-->
+
+            <!--Select с выбором специальности AJAX запрос в speciality_search.js-->
+            Специальность:
+            <select class="target" id="filter_speciality">
+                <option value = "none" selected = "none"></option>
+                {% for spec in specs %}
+                    {%  if spec.speciality_name == last_selected %}
+                        <option value="{{ spec.speciality_name }}" {{ selected }}>{{ spec.speciality_name }}</option>
+                    {% else %}
+                        <option value="{{ spec.speciality_name }}">{{ spec.speciality_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <!--select с выбором специальности-->
+
+            <!-- Сюда возвращаются значения из ajax, подставляется graduates.html -->
+            <div id="search_faculty_results">
+                <!-- Блок с таблицей -->
+                <div class="col-md-9">
+                    <!-- Таблица выпускников -->
+                    <table class="table table-bordered">
                         <tr class="success">
                             <td>Фамилия</td>
                             <td>Имя</td>
@@ -22,21 +61,31 @@
                             <td>Специальность</td>
                             <td>Год окончания</td>
                             <td>Ступень</td>
+                            <td>Группа</td>
                         </tr>
                         {% for graduate in graduates %}
                             <tr class="tr-grad" onclick='return location.href ="get_graduate_description/{{ graduate.id }}"'>
                                 <td>{{ graduate.graduate_surname }}</td>
                                 <td>{{ graduate.graduate_name }} </td>
                                 <td>{{ graduate.graduate_patronymic }}</td>
-                                <td>{{ graduate.graduate_speciality }}</td>
-                                <td>{{ graduate.graduate_gradyear  }}</td>
-                                <td>{{ graduate.graduate_degree  }}</td>
+                                <td>{{ graduate.graduate_group.group_speciality.speciality_name }}</td>
+                                <td>{{ graduate.graduate_group.group_end_year  }}</td>
+                                <td>{{ graduate.graduate_group.group_degree  }}</td>
+                                <td>{{ graduate.graduate_group.group_number  }}</td>
                             </tr>
                         {% endfor %}
-                    </table><!-- таблица выпускников -->
-                    <div id="expand">Еще</div>
-                </div><!-- блок с таблицей -->
+                    </table>
+                    <!-- таблица выпускников -->
+                </div>
+                <!-- блок с таблицей -->
             </div>
+            <!--Кнопка для расширения списка-->
+            <div class="row">
+                <div class = "col-md-9 col-md-offset-2 div-expand" id="expand">
+                    <h4>Показать больше записей</h4>
+                </div>
+            </div>
+            <!--кнопка для расширения списка-->
         </div>
 
 

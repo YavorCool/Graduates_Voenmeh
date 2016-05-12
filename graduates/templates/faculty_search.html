@@ -1,19 +1,9 @@
 {% load staticfiles %}
-<script src="{% static "static/js/speciality_search.js" %}"></script>
-<script src="{% static "static/js/expand.js" %}"></script>
 
-<select class="target" id="filter_speciality">
-    {% for spec in specs %}
-        {%  if spec.speciality_name == last_selected %}
-            <option value="{{ spec.speciality_name }}" {{ selected }}>{{ spec.speciality_name }}</option>
-        {% else %}
-            <option value="{{ spec.speciality_name }}">{{ spec.speciality_name }}</option>
-        {% endif %}
-    {% endfor %}
-</select>
-
+<!--Таблица с выпусениками, отфильтрованная-->
 <div class="col-md-9">
 <table class="table table-bordered">
+    <!--Шапка-->
     <tr class="success">
         <td>Фамилия</td>
         <td>Имя</td>
@@ -21,17 +11,18 @@
         <td>Специальность</td>
         <td>Год окончания</td>
         <td>Ступень</td>
+        <td>Группа</td>
     </tr>
     {% for graduate in graduates %}
-        <tr class="tr-grad" onclick="return location.href = '/get_description/{{ graduate.id }}'">
+        <tr class="tr-grad" onclick="return location.href = '/get_graduate_description/{{ graduate.id }}'">
             <td>{{ graduate.graduate_surname }}</td>
             <td>{{ graduate.graduate_name }} </td>
             <td>{{ graduate.graduate_patronymic }}</td>
             <td>{{ graduate.graduate_speciality }}</td>
             <td>{{ graduate.graduate_gradyear  }}</td>
             <td>{{ graduate.graduate_degree  }}</td>
+            <td>{{ graduate.graduate_group.group_number  }}</td>
         </tr>
     {% endfor %}
 </table>
-<div id="expand" onclick="expand()">Еще</div>
 </div>
