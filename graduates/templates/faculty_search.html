@@ -18,9 +18,9 @@
             <td>{{ graduate.graduate_surname }}</td>
             <td>{{ graduate.graduate_name }} </td>
             <td>{{ graduate.graduate_patronymic }}</td>
-            <td>{{ graduate.graduate_speciality }}</td>
-            <td>{{ graduate.graduate_gradyear  }}</td>
-            <td>{{ graduate.graduate_degree  }}</td>
+            <td>{{ graduate.graduate_group.group_speciality.speciality_name }}</td>
+            <td>{{ graduate.graduate_group.group_end_year  }}</td>
+            <td>{{ graduate.graduate_group.group_degree  }}</td>
             <td>{{ graduate.graduate_group.group_number  }}</td>
         </tr>
     {% endfor %}
