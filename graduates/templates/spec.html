@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
     <script src = "{% static "static/js/jquery-2.2.3.min.js" %}"></script>
     <script src = "{% static "static/js/bootstrap.min.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href = "{% static "static/css/bootstrap.css" %}">
+    <link rel="stylesheet" pe="text/css" href = "{% static "static/css/bootstrap.css" %}">
     <link rel="stylesheet" type="text/css" href = "{% static "static/css/style.css" %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
      <div class="row div-header">
@@ -43,19 +43,9 @@
 
     </div>
     <div class = "row">
-        <div class="col-md-3 col-md-offset-1">
-            <h3>Специальности:</h3>
-            <ul class="list-group">
-                {% for spec in specs %}
-                    <li class="list-group-item kafs-list-item">
-                        <a href = "/get_spec_description/{{ spec.id }}" > ({{ spec.speciality_code }}) {{ spec.speciality_name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <h2 align="left">Кафедра "{{ kaf.kaf_name }}({{ kaf.kaf_code }})"</h2>
-            <blockquote>{{ kaf.kaf_description }}</blockquote>
+        <div class="col-md-6 col-md-offset-3">
+            <h2 align="left">"{{ spec.speciality_name }}({{ spec.speciality_code }})"</h2>
+            <blockquote>{{ spec.speciality_description }}</blockquote>
         </div>
 
 

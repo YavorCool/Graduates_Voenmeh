@@ -13,6 +13,7 @@ urlpatterns = [
      url(r'^get_graduate_description/(?P<id>\d+)$', views.get_graduate_description),
      url(r'^get_faculty_description/(?P<id>\d+)$', views.get_faculty_description),
      url(r'^get_kaf_description/(?P<id>\d+)$', views.get_kaf_description),
+     url(r'^get_spec_description/(?P<id>\d+)$', views.get_spec_description),
      url(r'^search_by_group/$', views.filter_by_group),
      url(r'^spec_list_by_group/$', views.spec_list_by_group),
      url(r'^group_list_by_spec/$', views.group_list_by_spec),

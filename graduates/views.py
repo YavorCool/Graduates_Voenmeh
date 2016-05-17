@@ -156,3 +156,9 @@ def get_kaf_description(request, id):
                                                'specs': specs
                                                })
 
+def get_spec_description(request, id):
+    spec = Speciality.objects.get(id=id)
+
+    return render_to_response('spec.html', {'spec': spec
+                                               })
+
