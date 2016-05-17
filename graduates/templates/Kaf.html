@@ -1,10 +1,64 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href = "{% static "static/css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href = "{% static "static/css/style.css" %}">
 </head>
 <body>
+     <div class="row div-header">
+        <div class = "col-md-1 col-md-offset-4"><img src="{% static "static/voenmeh.png" %}" width="120" height="120"></div>
+        <div class = "col-md-4"><h1>Выпускники Военмеха</h1></div>
+    </div>
+    <!-- Навигационная панель сверху-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Кнопки на панели-->
+            <ul class="nav navbar-nav">
+                <!-- Ссылка на поиск выпускника-->
+                <li><a href="/">Поиск выпусника</a></li>
+                <!-- Выпадающее меню с факультетами-->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Факультеты
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/get_faculty_description/1">Ракетно-Космической техники (А)</a></li>
+                        <li><a href="/get_faculty_description/2">Оружие и системы вооружения(Е)</a></li>
+                        <li><a href="/get_faculty_description/3">Информационные и управляющие системы (И)</a></li>
+                        <li><a href="/get_faculty_description/4">Естественнонаучный (О)</a></li>
+                        <li><a href="/get_faculty_description/5">Международного промышленного менджмента и коммуникации (Р)</a></li>
+                    </ul>
+                </li>
+                <!-- выпадающее меню с факультетами-->
+            </ul>
+            <!-- кнопки на панели-->
+        </div>
+    </nav>
 
+    <div class = "row">
+
+    </div>
+    <div class = "row">
+        <div class="col-md-3 col-md-offset-1">
+            <h3>Специальности:</h3>
+            <ul class="list-group">
+                {% for spec in specs %}
+                    <li class="list-group-item kafs-list-item">
+                        <a href = "get_spec_description/{{ spec.id }}" > ({{ spec.speciality_code }}) {{ spec.speciality_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2 align="left">Кафедра "{{ kaf.kaf_name }}({{ kaf.kaf_code }})"</h2>
+            <blockquote>{{ kaf.kaf_description }}</blockquote>
+        </div>
+
+
+    </div>
 </body>
 </html>

@@ -10,13 +10,18 @@
     <link rel="stylesheet" type="text/css" href = "{% static "static/css/style.css" %}">
 </head>
 <body>
+     <div class="row div-header">
+        <div class = "col-md-1 col-md-offset-4"><img src="{% static "static/voenmeh.png" %}" width="120" height="120"></div>
+        <div class = "col-md-4"><h1>Выпускники Военмеха</h1></div>
+    </div>
+    <!-- Навигационная панель сверху-->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Выпускники военмеха</a>
-            </div>
+            <!-- Кнопки на панели-->
             <ul class="nav navbar-nav">
+                <!-- Ссылка на поиск выпускника-->
                 <li><a href="/">Поиск выпусника</a></li>
+                <!-- Выпадающее меню с факультетами-->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Факультеты
                     <span class="caret"></span></a>
@@ -28,29 +33,32 @@
                         <li><a href="/get_faculty_description/5">Международного промышленного менджмента и коммуникации (Р)</a></li>
                     </ul>
                 </li>
+                <!-- выпадающее меню с факультетами-->
             </ul>
+            <!-- кнопки на панели-->
         </div>
     </nav>
 
     <div class = "row">
-        <h2 align="center">{{ faculty.faculty_name }}</h2>
+
     </div>
     <div class = "row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-3 col-md-offset-1">
+            <h3>Кафедры:</h3>
+            <ul class="list-group">
+                {% for kaf in kafs %}
+                    <li class="list-group-item kafs-list-item">
+                        <a href = "/get_kaf_description/{{ kaf.id }}" > ({{ kaf.kaf_code }}) {{ kaf.kaf_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2 align="left">Факультет "{{ faculty.faculty_name }}"</h2>
             <blockquote>{{ faculty.faculty_description }}</blockquote>
         </div>
-    </div>
-    <div class = "row">
-        <div class="col-md-8 col-md-offset-2">
-            <h3>Кафедры:</h3>
-            <table class="table-responsive">
-                {% for kaf in kafs %}
-                    <tr class="tr-grad" onclick='return location.href ="get_kaf_description/{{ kaf.id }}"'>
-                        <td>{{ kaf.kaf_name }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
+
+
     </div>
 
 

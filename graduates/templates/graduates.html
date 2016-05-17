@@ -2,10 +2,14 @@
 {% load staticfiles %}
 {% block graduate %}
         <!-- Основной блок -->
+        <div class = "row search-grad">
+            <div class="col-md-3 col-md-offset-5"><h2>Поиск выпускника</h2></div>
+        </div>
+
         <div class="row">
             <!-- Блок слева, поиск по фамилии -->
-            <div class="col-md-2">
-                <h5>Поиск по фамилии</h5>
+            <div class="col-md-2 div-search-surname">
+                <h5 align="left"><b>Начните вводить фамилию:</b></h5>
                 <input type="text" id="search" name="search"/>
                 <!-- Таблица для втсавки из ajax_search.html -->
                 <table id="search_results" class="table">
@@ -15,7 +19,9 @@
             <!-- блок слева, поиск по фамилии конец -->
 
             <!--Выбор факультета AJAX запрос в faculty_search.js  -->
-            Факультет:
+        <div class="col-md-9">
+            <div class = "div-selects">
+            <b>Факультет:</b>
             <select class="target" id="filter_faculty">
                 <option value="none" selected="none"></option>
                 {% for faculty in faculties %}
@@ -25,7 +31,7 @@
             <!-- выбор факультета -->
 
             <!--Select с выбором группы AJAX запрос в group_search.js-->
-            Группа:
+            <b>Группа:</b>
             <select class="target" id="filter_group">
                 <option value = "none" selected = "none"></option>
                 {% for group in groups %}
@@ -35,7 +41,7 @@
             <!--select с выбором группы AJAX запрос в group_search.js-->
 
             <!--Select с выбором специальности AJAX запрос в speciality_search.js-->
-            Специальность:
+            <b>Специальность:</b>
             <select class="target" id="filter_speciality">
                 <option value = "none" selected = "none"></option>
                 {% for spec in specs %}
@@ -47,14 +53,13 @@
                 {% endfor %}
             </select>
             <!--select с выбором специальности-->
-
+            </div>
             <!-- Сюда возвращаются значения из ajax, подставляется graduates.html -->
             <div id="search_faculty_results">
                 <!-- Блок с таблицей -->
-                <div class="col-md-9">
                     <!-- Таблица выпускников -->
                     <table class="table table-bordered">
-                        <tr class="success">
+                        <tr class="info">
                             <td>Фамилия</td>
                             <td>Имя</td>
                             <td>Отчество</td>

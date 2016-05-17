@@ -44,3 +44,39 @@
     background: #c5c5c5;
 }
 
+.div-header{
+    background: linear-gradient(to top, #dddddd, #365d9b);
+    color : #ffffff;
+    font-family: AngsanaUPC;
+    vertical-align: middle;
+}
+
+.div-selects{
+    margin-bottom: 1%;
+    text-align: left;
+}
+
+.search-grad{
+    padding-bottom: 1%;
+}
+
+.div-search-surname{
+    margin-left: 1%;
+}
+
+h1 {
+    font-family: AngsanaUPC;
+}
+
+h2 {
+    font-family: "Times New Roman";
+}
+
+.kafs-list-item{
+    transition : 0.2s
+}
+
+.kafs-list-item:hover{
+    background: #dddddd;
+}
+

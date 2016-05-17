@@ -3,7 +3,7 @@ from django.shortcuts import render, render_to_response
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import csrf_exempt
 
-from graduates.models import Graduate, Speciality, Faculty, Group
+from graduates.models import Graduate, Speciality, Faculty, Group, Kaf
 
 
 def graduates(request):
@@ -24,7 +24,7 @@ def graduates(request):
 def search_surname(request):
     if request.method == "POST":
         search_text = request.POST['search_text']
-        search_text[0:0].upper()
+        search_text = search_text[0].upper() + search_text[1:]
     else:
         search_text=''
     show_count = request.POST['show_count']
@@ -101,21 +101,6 @@ def filter_by_group(request):
                                                       })
 
 
-def get_graduate_description(request, id):
-    graduate = Graduate.objects.get(id=id)
-
-    return render_to_response('graduate.html', {'graduate': graduate,
-                                                })
-
-
-def get_faculty_description(request, id):
-    faculty = Faculty.objects.get(id=id)
-    kafs = faculty.kaf_set.all()
-
-    return render_to_response('faculty.html', {'faculty': faculty,
-                                               'kafs': kafs
-                                               })
-
 
 @csrf_exempt
 def spec_list_by_group(request):
@@ -145,3 +130,29 @@ def group_list_by_spec(request):
             groups = Group.objects.all()
 
     return render_to_response('groups_list.html', {'groups': groups})
+
+
+def get_graduate_description(request, id):
+    graduate = Graduate.objects.get(id=id)
+
+    return render_to_response('graduate.html', {'graduate': graduate,
+                                                })
+
+
+def get_faculty_description(request, id):
+    faculty = Faculty.objects.get(id=id)
+    kafs = faculty.kaf_set.all()
+
+    return render_to_response('faculty.html', {'faculty': faculty,
+                                               'kafs': kafs
+                                               })
+
+
+def get_kaf_description(request, id):
+    kaf = Kaf.objects.get(id=id)
+    specs = kaf.speciality_set.all()
+
+    return render_to_response('kaf.html', {'kaf': kaf,
+                                               'specs': specs
+                                               })
+
